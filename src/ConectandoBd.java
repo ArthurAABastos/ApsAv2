@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.sql.*;
-
 public class ConectandoBd {
     private Statement stm;
     private Connection conectando;
@@ -20,13 +19,13 @@ public class ConectandoBd {
             JOptionPane.showMessageDialog(null, "Ops! Falha na conexão com o BD" + e.getMessage());
         }
 
-        inserirBd();
-        consultarPlaca();
-        atualizarPlaca();
-        deletarRegistro();
-        buscarRegistro();
-        buscarRegistroCliente();
-
+//        inserirBd();
+//        consultarPlaca();
+//        atualizarPlaca();
+//        deletarRegistro();
+//        buscarRegistro();
+//        buscarRegistroCliente();
+        inserirCliente ();
     }
 
     //INSERINDO UM REGISTRO NO BANCO DE DADOS DA APS
@@ -98,6 +97,7 @@ public class ConectandoBd {
         }
     }
 
+    //MÉTODO PARA BUSCAR UM REGISTRO NO BANCO DE DADOS DA APS
     public void buscarRegistroCliente() {
 
         try {
@@ -124,6 +124,31 @@ public class ConectandoBd {
             System.out.println("Erro: Não foi possível buscar o registro. " + e.getMessage());
         }
     }
+
+    //USANDO A CLASSE PREPAREDSTATEMENT PARA ADICIONAR UM REGISTRO NO BANCO DE DADOS DA APS
+    public void inserirCliente () {
+
+        String cpf = "4436072796";
+        String nome = "Ketlim Silva";
+        String endereco = "Rua das Quebradas";
+        String telefone = "65782145";
+
+        try {
+            PreparedStatement pstmt = conectando.prepareStatement("INSERT INTO clientes VALUES (?,?,?,?)");
+
+            pstmt.setString(1,cpf);
+            pstmt.setString(2,nome);
+            pstmt.setString(3,endereco);
+            pstmt.setString(4,telefone);
+
+            pstmt.execute();
+
+        }catch (SQLException e) {
+            System.out.println("erro: " + e.getMessage());
+        }
+    }
+
+
 
 
     public static void main(String[] args) {
