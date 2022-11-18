@@ -148,9 +148,6 @@ public class ConectandoBd {
         }
     }
 
-
-
-
     public static void main(String[] args) {
         new ConectandoBd();
     }
