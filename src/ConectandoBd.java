@@ -110,14 +110,13 @@ public class ConectandoBd {
 
                 ResultSet resultado2 = stm2.executeQuery("SELECT * FROM clientes WHERE cpf = " + cpf +"  ");
 
-
                 if (resultado2.next()) {
 
                     JOptionPane.showMessageDialog(null, "Placa: "+resultado.getString("placa") +" "+ "CPF: " + resultado2.getString("cpf" ) +" "+ "NOME: " + resultado2.getString("nome"));
 
                 } else {
 
-                    System.out.println("erro porra");
+                    System.out.println("Não foi possível realizar a busca no BD!");
                 }
             }
 
